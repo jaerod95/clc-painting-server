@@ -8,12 +8,23 @@
     "express": "^4.16.3"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "8",
+    "babel-preset-env": "^1.7.0",
+    "chai": "^4.2.0",
+    "eslint": "4.x",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.4",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.1"
   },
   "scripts": {
     "build": "node build/build.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "yarn run test && nodemon src/index.js --exec 'yarn run lint && babel-node'",
+    "test": "NODE_ENV=test mocha --require babel-core/register tests/*.test.js",
+    "lint": "eslint src"
   },
   "author": "",
   "license": "ISC"

@@ -1,7 +1,5 @@
-const express = require('express');
+import express from 'express';
 
 const app = express();
 
-app.listen(8000, function() {
-  console.log('Express app running on 8000');
-});
+app.listen(8000, () => console.log('Express app running on 8000'));
