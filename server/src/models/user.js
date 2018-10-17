@@ -1,5 +1,3 @@
-const hooks = require('../mixins/transactionHooks');
-
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
     'User',
