@@ -1,12 +1,6 @@
-// ACTION VERBS
-export const ON_AUTH_STATE_CHANGE = 'ON_AUTH_STATE_CHANGE';
-
-// GETTERS
-export const IS_AUTHENTICATED = 'IS_AUTHENTICATED';
-
-export const AUTH_VERIFY_USER_TOKEN = 'AUTH_VERIFY_USER_TOKEN';
-export const AUTH_DELETE_USER_TOKEN = 'AUTH_DELETE_USER_TOKEN';
 export const AUTH_SET_USER_TOKEN = 'AUTH_SET_USER_TOKEN';
 export const AUTH_LOGIN = 'AUTH_LOGIN';
-export const AUTH_REGISTER = 'AUTH_REGISTER';
-export const AUTH_LOGOUT = 'AUTH_LOGOUT';
+
+// URLS (this should probably be moved to an api calls class or something)
+export const AUTH_LOGIN_URL = `${process.env.BASE_URL ||
+  'http://localhost:9494'}/login`;
