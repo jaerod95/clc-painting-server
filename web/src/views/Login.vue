@@ -1,53 +1,51 @@
 <template>
-  <div>
-    <input v-model="message" type="text" />
-    <h1>{{ message }}</h1>
-    <br/>
-    <input v-model="range" type="range" />
-    <h1>{{ range }}</h1>
-    <br/>
-    <div v-for="employee in employees" :key="employee.id">
-      <CoolThing :employee="employee"></CoolThing>
-    </div>
-
-<button @click="onButtonClick">AwesomeStuff</button>
-
-    <div v-if="range > 50">
-      <p>WOAH THATS A LOT</p>
-    </div>
-    <div v-else>
-      <p>ITS SMALL</p>
-    </div>
-  </div>
+<v-container fluid>
+  <v-layout align-center fill-height row>
+    <v-flex xs12 sm6 offset-sm3 md4 offset-md4>
+      <v-flex mb-4 text-xs-center>
+        <h1 class="display-1">CLC Painting</h1>
+      </v-flex>
+      <v-card elevation-4 class="loginCard">
+        <v-flex pa-4>
+        <v-text-field placeholder="email" v-model="authObject.email"></v-text-field>
+        <v-text-field placeholder="password" v-model="authObject.password"></v-text-field>
+        <v-btn @click="login" color="primary">login</v-btn>
+        </v-flex>
+      </v-card>
+    </v-flex>
+  </v-layout>
+</v-container>
 </template>
 
 <script>
-import HelloWorld from '@/components/HelloWorld.vue';
+import { AUTH_LOGIN, ON_AUTH_STATE_CHANGE } from '@/store/constants';
 
 export default {
-  components: {
-    CoolThing: HelloWorld,
-  },
   data() {
     return {
-      message: 'Hello World',
-      range: 50,
-      employees: [
-        { id: 0, name: 'jimmy', skills: 'good' },
-        { id: 1, name: 'john', skills: 'good' },
-        { id: 2, name: 'john', skills: 'good' },
-        { id: 3, name: 'john', skills: 'good' },
-        { id: 4, name: 'john', skills: 'good' },
-      ],
+      authObject: {
+        email: '',
+        password: '',
+      },
     };
   },
   methods: {
-    onButtonClick() {
-      alert('HI!');
+    login() {
+      this.$store
+        .dispatch(`auth/${AUTH_LOGIN}`)
+        .then(() => {
+          this.$root.$emit(ON_AUTH_STATE_CHANGE, true);
+        })
+        .catch(error => {
+          console.error(error);
+        });
     },
   },
 };
 </script>
 
-<style>
+<style lang="scss">
+.full-height-wrapper {
+  height: 100vh;
+}
 </style>
