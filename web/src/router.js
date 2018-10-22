@@ -9,15 +9,24 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
+      path: '/',
+      name: 'Home',
+      redirect: '/login',
+    },
+    {
       path: '/login',
       name: 'Login',
       component: Login,
     },
     {
       path: '/app',
+      name: 'AppWrapper',
+      redirect: '/app/projects',
+      component: () =>
+        import(/* webpackChunkName: "appWrapper" */ './views/AppWrapper.vue'),
       children: [
         {
-          path: '/projects',
+          path: 'projects',
           name: 'Projects',
           component: () =>
             import(/* webpackChunkName: "projects" */ './views/Projects.vue'),
