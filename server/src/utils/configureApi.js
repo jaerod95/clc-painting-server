@@ -1,6 +1,5 @@
-// import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
-// import { authController } from '../controllers';
-// import schema from '../graphql/index';
+import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
+import schema from '../graphql';
 import pjson from '../../package.json';
 
 export default router => {
@@ -19,18 +18,18 @@ export default router => {
   // router.post('/authenticate', authController.authenticate);
 
   // GRAPHQL Route
-  // router.all(
-  //   '/graphql',
-  //   graphqlExpress({
-  //     schema,
-  //     tracing: true,
-  //   }),
-  // );
-  // router.get('/graphiql', graphiqlExpress({ endpointURL: '/v1/graphql' }));
+  router.all(
+    '/graphql',
+    graphqlExpress({
+      schema,
+      tracing: true,
+    }),
+  );
+  router.get('/graphiql', graphiqlExpress({ endpointURL: '/v1/graphql' }));
 
-  // router.all('/health', (req, res) => {
-  //   res.send('ok');
-  // });
+  router.all('/health', (req, res) => {
+    res.send('ok');
+  });
 
   router.get('/', (req, res) => {
     res.send({
