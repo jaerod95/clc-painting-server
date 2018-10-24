@@ -8,7 +8,7 @@
         <v-card elevation-4 class='employee'>
           <v-flex pa-4>
           <v-text-field placeholder='Name' v-model='employeeObject.name'></v-text-field>
-          <v-time-picker placeholder='Schedule' v-model='employeeObject.schedule'>
+          <v-time-picker v-model="picker" placeholder='Schedule'>
           </v-time-picker>
           <v-container align-baseline='true'>
           </v-container>
