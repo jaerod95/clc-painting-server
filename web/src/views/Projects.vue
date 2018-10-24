@@ -2,8 +2,8 @@
   <div class="wrapper">
     <div class="wrapper">
       <h1> PROJECTS VIEW </h1>
-      </div>
-      </div>
+    </div>
+  </div>
 </template>
 
 <script>
