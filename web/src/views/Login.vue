@@ -1,6 +1,6 @@
 <template>
-<v-container fluid>
-  <v-layout align-center fill-height row>
+<v-container pa-0 fluid class="main-background">
+  <v-layout align-center fill-height row class="sub-background">
     <v-flex xs12 sm6 offset-sm3 md4 offset-md4>
       <v-flex mb-4 text-xs-center>
         <h1 class="display-1">CLC Painting</h1>
@@ -47,5 +47,13 @@ export default {
 <style lang="scss">
 .full-height-wrapper {
   height: 100vh;
+}
+
+.main-background {
+  background-image: url('../assets/login_background.jpg');
+
+  .sub-background {
+    background: rgba(255, 255, 255, 0.75);
+  }
 }
 </style>
