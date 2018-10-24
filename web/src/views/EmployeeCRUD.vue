@@ -2,16 +2,26 @@
   <v-container fluid>
     <v-layout align-center fill-height row>
       <v-flex xs12 sm6 offset-sm3 md4 offset-md4>
-        <v-flex mb-4 text-xs-center>
-          <h1 class='display-1'>Create Employee</h1>
-        </v-flex>
         <v-card elevation-4 class='employee'>
           <v-flex pa-4>
-          <v-text-field placeholder='Name' v-model='employeeObject.name'></v-text-field>
-          <v-time-picker v-model="picker" placeholder='Schedule'>
-          </v-time-picker>
-          <v-container align-baseline='true'>
-          </v-container>
+          <v-text-field label='Employee Name' v-model='employeeObject.name'></v-text-field>
+      <v-item-group multiple>
+        <v-subheader>Schedule</v-subheader>
+        <v-item
+          v-for="n in 12"
+          :key="n"
+        >
+          <v-chip
+            label='true'
+            slot-scope="{ active, toggle }"
+            :selected="active"
+            @click="toggle"
+          >
+            {{ n }}
+          </v-chip>
+        </v-item>
+      </v-item-group>
+
               <v-layout row justify-space-between>
       <v-flex class='text-xs-left' xs>
           <v-btn @click='onButtonDelete' color='red'>Delete</v-btn>

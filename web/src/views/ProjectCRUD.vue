@@ -57,30 +57,28 @@
           v-model='projectObject.details'
         ></v-textarea>
         <v-flex>
-    <v-stepper non-linear>
+    <v-stepper non-linear v-model="projectObject.indOutBoth">
       <v-stepper-header>
         <v-stepper-step
           editable
-          step=""
+          step="I"
         >Indoor
         </v-stepper-step>
         <v-divider></v-divider>
         <v-stepper-step
           editable
-          step="  "
+          step="O"
         >Outdoor
         </v-stepper-step>
         <v-divider></v-divider>
         <v-stepper-step
-          step="   "
+          step="B"
           editable
         >Both
         </v-stepper-step>
       </v-stepper-header>
     </v-stepper>
-        </v-flex>
-          <v-container align-baseline='true'>
-          </v-container>           
+        </v-flex>        
             <v-layout row justify-space-between>
       <v-flex class='text-xs-left' xs>
           <v-btn @click='onButtonDelete' color='red'>Delete</v-btn>
@@ -116,7 +114,8 @@ export default {
         datePick: {
             startDate: '2018-04-05',
             endDate: '2018-04-20',
-                }
+                },
+        indOutBoth: '',
       },
     };
   },
