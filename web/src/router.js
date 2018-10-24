@@ -26,6 +26,18 @@ export default new Router({
         import(/* webpackChunkName: "appWrapper" */ './views/AppWrapper.vue'),
       children: [
         {
+          path: 'dashboard',
+          name: 'Dashboards',
+          component: () =>
+            import(/* webpackChunkName: "projects" */ './views/Projects.vue'),
+        },
+        {
+          path: 'employees',
+          name: 'Employees',
+          component: () =>
+            import(/* webpackChunkName: "projects" */ './views/Projects.vue'),
+        },
+        {
           path: 'projects',
           name: 'Projects',
           component: () =>
