@@ -1,9 +1,11 @@
 <template>
-  <div class="wrapper">
-    <div class="wrapper">
+  <v-container class="wrapper">
+    <v-layout>
+      <v-flex>
       <h1> PROJECTS VIEW </h1>
-    </div>
-  </div>
+      </v-flex>
+      </v-layout>
+  </v-container>
 </template>
 
 <script>
@@ -11,9 +13,4 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
-.wrapper {
-  background-color: red;
-  width: 100%;
-  height: 100%;
-}
 </style>
