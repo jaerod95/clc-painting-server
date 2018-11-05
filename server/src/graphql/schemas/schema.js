@@ -5,6 +5,7 @@ import { makeExecutableSchema } from 'graphql-tools';
 import { typeDefs as Employee, resolvers as employeeResolvers } from './employee';
 import { typeDefs as Project, resolvers as projectResolvers } from './project';
 import { typeDefs as User, resolvers as userResolvers } from './user';
+import { typeDefs as Skill, resolvers as skillResolvers } from './skill';
 
 
 const Query = `
@@ -24,10 +25,12 @@ export default makeExecutableSchema({
     Employee,
     Project,
     User,
+    Skill,
   ],
   resolvers: merge(
     employeeResolvers,
     projectResolvers,
     userResolvers,
+    skillResolvers,
   ),
 });

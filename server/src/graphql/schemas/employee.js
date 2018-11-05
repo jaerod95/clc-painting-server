@@ -50,5 +50,7 @@ extend type Mutation {
 type Employee {
     id: Int
     firstName: String
+    lastName: String
+    inAttendance: Boolean
 }
 `;
