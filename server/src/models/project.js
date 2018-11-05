@@ -20,5 +20,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
     },
   }, {});
+
+  Project.associate = function (models) {
+    Project.hasMany(models.Assignment);
+  };
+
   return Project;
 };

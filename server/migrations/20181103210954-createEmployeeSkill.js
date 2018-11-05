@@ -1,38 +1,37 @@
-
 'use strict';
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Employees', {
+    return queryInterface.createTable('EmployeeSkills', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      firstName: {
+      skillLevel: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      lastName: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
-      inAttendance: {
-        allowNull: true,
-        type: Sequelize.BOOLEAN,
-      },
-      userId: {
+      employeeId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: "Users",
+          model: "Employees",
+          key: "id"
+        }
+      },
+      skillId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Skills",
           key: "id"
         }
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATE
       },
       updatedAt: {
         allowNull: false,
@@ -42,6 +41,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Employees')
+    return queryInterface.dropTable('EmployeeSkills')
   }
 };
