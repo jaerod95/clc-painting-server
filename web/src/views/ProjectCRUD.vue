@@ -15,7 +15,7 @@
             format="YYYY-MM-DD"
             formatted="ddd D MMM YYYY"
             label="Select Project Start and End Dates"
-            />   
+            />
             <v-picker/>
                 <v-subheader>Min/Max Employees</v-subheader>
         <v-layout row>
@@ -78,7 +78,7 @@
         </v-stepper-step>
       </v-stepper-header>
     </v-stepper>
-        </v-flex>        
+        </v-flex>
             <v-layout row justify-space-between>
       <v-flex class='text-xs-left' xs>
           <v-btn @click='onButtonDelete' color='red'>Delete</v-btn>
@@ -99,22 +99,19 @@
 import VueCtkDateTimePicker from 'vue-ctk-date-time-picker';
 
 export default {
-    components: {
-        'vue-ctk-date-time-picker': VueCtkDateTimePicker,
-    },
+  components: {
+    'vue-ctk-date-time-picker': VueCtkDateTimePicker,
+  },
   data() {
     return {
       projectObject: {
         name: '',
-        employeeCnt: [
-            0,
-            25,
-        ],
+        employeeCnt: [0, 25],
         details: '',
         datePick: {
-            startDate: '2018-04-05',
-            endDate: '2018-04-20',
-                },
+          startDate: '2018-04-05',
+          endDate: '2018-04-20',
+        },
         indOutBoth: '',
       },
     };
@@ -123,5 +120,4 @@ export default {
 </script>
 
 <style>
-
 </style>
