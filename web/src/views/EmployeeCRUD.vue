@@ -2,6 +2,17 @@
   <v-layout align-center fill-height row>
     <v-flex xs12 sm6 offset-sm3 md4 offset-md4>
       <v-card elevation-4 class='employee'>
+        <v-layout row justify-end>
+          <v-flex xs12 sm5 md5 offset-xs0>
+            <v-switch
+              v-model="ex11"
+              label="Edit"
+              color="primary"
+              value="primary"
+              hide-details
+            ></v-switch>
+          </v-flex>
+        </v-layout>
         <v-flex pa-4>
         <v-text-field label='Employee Name' v-model='employeeObject.name'></v-text-field>
       <v-subheader>Schedule</v-subheader>
