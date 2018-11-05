@@ -23,7 +23,7 @@ module.exports = {
         type: Sequelize.BOOLEAN,
       },
       userId: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.INTEGER,
         references: {
           model: "Users",

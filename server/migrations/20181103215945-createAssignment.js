@@ -18,7 +18,7 @@ module.exports = {
         type: Sequelize.DATE
       },
       employeeId: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.INTEGER,
         references: {
           model: "Employees",
@@ -26,7 +26,7 @@ module.exports = {
         }
       },
       projectId: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.INTEGER,
         references: {
           model: "Projects",

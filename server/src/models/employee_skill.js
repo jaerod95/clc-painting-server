@@ -4,5 +4,12 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
     },
   }, {});
+
+
+  EmployeeSkill.associate = function (models) {
+    EmployeeSkill.belongsTo(models.Employee);
+    EmployeeSkill.belongsTo(models.Skill);
+  };
+
   return EmployeeSkill;
 };

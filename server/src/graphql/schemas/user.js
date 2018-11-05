@@ -36,7 +36,7 @@ extend type Query {
 }
 
 extend type Mutation {
-  createUser(firstName: String!): User
+  createUser(username: String!, password: String!, firstName: String!, lastName: String!): User
   updateUser(id: Int!): User
   deleteUser(id: Int!): Int
 }

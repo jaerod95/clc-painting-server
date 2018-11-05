@@ -12,7 +12,14 @@ export const resolvers = {
   },
   Mutation: {
     createEmployee(_, args) {
-      return Employee.create(args);
+      const empArgs = args;
+      db.User.findOne({ where: { username: empArgs.bossUsername } }).then(user => {
+        empArgs.inAttendance = false;
+        delete empArgs.bossUsername;
+        return Employee.create(empArgs).then(employee => {
+          employee.setUser(user);
+        });
+      });
     },
     async updateEmployee(_, args) {
       await Employee.update(args, {
@@ -35,7 +42,7 @@ extend type Query {
 }
 
 extend type Mutation {
-  createEmployee(firstName: String!): Employee
+  createEmployee(firstName: String!, lastName: String!, bossUsername: String!): Employee
   updateEmployee(id: Int!, firstName: String): Employee
   deleteEmployee(id: Int!): Int
 }

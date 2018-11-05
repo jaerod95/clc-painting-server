@@ -11,5 +11,9 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
 
+  Hours.associate = function (models) {
+    Hours.belongsTo(models.Employee);
+  };
+
   return Hours;
 };

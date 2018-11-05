@@ -14,7 +14,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       employeeId: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.INTEGER,
         references: {
           model: "Employees",
@@ -22,7 +22,7 @@ module.exports = {
         }
       },
       skillId: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.INTEGER,
         references: {
           model: "Skills",

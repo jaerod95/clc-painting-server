@@ -7,5 +7,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
     },
   }, {});
+
+  Assignment.associate = function (models) {
+    Assignment.belongsTo(models.Employee);
+    Assignment.belongsTo(models.Project);
+  };
+
   return Assignment;
 };
