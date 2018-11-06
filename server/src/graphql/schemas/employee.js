@@ -12,6 +12,10 @@ export const resolvers = {
             model: db.User,
             as: 'user',
           },
+          {
+            model: db.Chemistry,
+            as: 'chemistry',
+          },
         ],
       });
     },
@@ -59,5 +63,6 @@ type Employee {
     lastName: String
     inAttendance: Boolean
     user: User
+    chemistry: [Chemistry]
 }
 `;

@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     Employee.hasMany(models.EmployeeSkill);
     Employee.hasMany(models.Hours);
     Employee.hasMany(models.Assignment);
+    Employee.hasMany(models.Chemistry, { as: 'chemistry' });
   };
 
   return Employee;
