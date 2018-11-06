@@ -3,17 +3,13 @@ module.exports = (sequelize, DataTypes) => {
     title: {
       type: DataTypes.STRING,
     },
-    owner: {
-      type: DataTypes.STRING,
-    },
     address: {
       type: DataTypes.STRING,
     },
     description: {
       type: DataTypes.STRING,
     },
-    // I want this attribute to be a boolean but I'm not sure if this is the correct way
-    is_finished: {
+    isFinished: {
       type: DataTypes.BOOLEAN,
     },
     priority: {
@@ -22,7 +18,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
 
   Project.associate = function (models) {
-    Project.hasMany(models.Assignment);
+    Project.hasMany(models.Assignment, { as: 'assignments' });
+    Project.belongsTo(models.User, { as: 'user', foreignKey: 'userId' });
   };
 
   return Project;

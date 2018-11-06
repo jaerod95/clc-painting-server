@@ -7,15 +7,21 @@ export const resolvers = {
     employee(_, args) {
       return Employee.find({
         where: args,
+        include: [
+          {
+            model: db.User,
+            as: 'user',
+          },
+        ],
       });
     },
   },
   Mutation: {
     createEmployee(_, args) {
       const empArgs = args;
-      db.User.findOne({ where: { username: empArgs.bossUsername } }).then(user => {
+      db.User.findOne({ where: { id: empArgs.bossUserId } }).then(user => {
         empArgs.inAttendance = false;
-        delete empArgs.bossUsername;
+        delete empArgs.bossUserId;
         return Employee.create(empArgs).then(employee => {
           employee.setUser(user);
         });
@@ -42,7 +48,7 @@ extend type Query {
 }
 
 extend type Mutation {
-  createEmployee(firstName: String!, lastName: String!, bossUsername: String!): Employee
+  createEmployee(firstName: String!, lastName: String!, bossUserId: Int!): Employee
   updateEmployee(id: Int!, firstName: String): Employee
   deleteEmployee(id: Int!): Int
 }
@@ -52,5 +58,6 @@ type Employee {
     firstName: String
     lastName: String
     inAttendance: Boolean
+    user: User
 }
 `;

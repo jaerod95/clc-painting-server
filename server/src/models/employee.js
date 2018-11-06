@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
 
   Employee.associate = function (models) {
-    Employee.belongsTo(models.User);
+    Employee.belongsTo(models.User, { as: 'user', foreignKey: 'userId' });
     Employee.hasMany(models.EmployeeSkill);
     Employee.hasMany(models.Hours);
     Employee.hasMany(models.Assignment);

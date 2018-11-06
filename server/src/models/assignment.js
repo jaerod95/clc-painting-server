@@ -9,8 +9,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
 
   Assignment.associate = function (models) {
-    Assignment.belongsTo(models.Employee);
-    Assignment.belongsTo(models.Project);
+    Assignment.belongsTo(models.Employee, { as: 'employee', foreignKey: 'employeeId' });
+    Assignment.belongsTo(models.Project, { as: 'project', foreignKey: 'projectId' });
   };
 
   return Assignment;

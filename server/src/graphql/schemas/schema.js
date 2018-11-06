@@ -7,6 +7,7 @@ import { typeDefs as Project, resolvers as projectResolvers } from './project';
 import { typeDefs as User, resolvers as userResolvers } from './user';
 import { typeDefs as Skill, resolvers as skillResolvers } from './skill';
 import { typeDefs as EmployeeSkill, resolvers as employeeSkillResolvers } from './employeeSkill';
+import { typeDefs as Assignment, resolvers as assignmentResolvers } from './assignment';
 
 
 const Query = `
@@ -28,6 +29,7 @@ export default makeExecutableSchema({
     User,
     Skill,
     EmployeeSkill,
+    Assignment,
   ],
   resolvers: merge(
     employeeResolvers,
@@ -35,5 +37,6 @@ export default makeExecutableSchema({
     userResolvers,
     skillResolvers,
     employeeSkillResolvers,
+    assignmentResolvers,
   ),
 });

@@ -10,22 +10,33 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       title: {
-        allowNull: true,
-        type: Sequelize.STRING
-      },
-      owner: {
-        allowNull: true,
+        allowNull: false,
         type: Sequelize.STRING
       },
       address: {
-        allowNull: true,
+        allowNull: false,
         type: Sequelize.STRING
       },
       description: {
         allowNull: true,
         type: Sequelize.STRING
       },
-      // is_finished boolean...
+      isFinished: {
+        allowNull: false,
+        type: Sequelize.BOOLEAN
+      },
+      priority: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+      },
+      userId: {
+        allowNull: true,
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Users",
+          key: "id"
+        }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
