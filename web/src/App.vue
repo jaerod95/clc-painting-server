@@ -34,6 +34,8 @@ export default {
   },
   // Global Handlers Here
   mounted() {
+    console.log(process.env);
+
     // ////////////////
     // AUTH HANDLER //
     // ////////////////

@@ -1,4 +1,4 @@
-module.exports = (sequelize, DataTypes) => {
+module.exports = function employee(sequelize, DataTypes) {
   const Employee = sequelize.define('Employee', {
     firstName: {
       type: DataTypes.STRING,
@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
 
-  Employee.associate = function (models) {
+  Employee.associate = function associate(models) {
     Employee.belongsTo(models.User, { as: 'user', foreignKey: 'userId' });
     Employee.hasMany(models.EmployeeSkill);
     Employee.hasMany(models.Hours);

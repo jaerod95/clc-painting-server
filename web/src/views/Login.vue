@@ -7,8 +7,8 @@
       </v-flex>
       <v-card elevation-4 class="loginCard">
         <v-flex pa-4>
-        <v-text-field placeholder="email" v-model="authObject.email"></v-text-field>
-        <v-text-field placeholder="password" v-model="authObject.password"></v-text-field>
+        <v-text-field placeholder="email" v-model="auth.email"></v-text-field>
+        <v-text-field placeholder="password" v-model="auth.password"></v-text-field>
         <v-btn @click="login" color="primary">login</v-btn>
         </v-flex>
       </v-card>
@@ -23,7 +23,7 @@ import { AUTH_LOGIN, ON_AUTH_STATE_CHANGE } from '@/store/constants';
 export default {
   data() {
     return {
-      authObject: {
+      auth: {
         email: '',
         password: '',
       },
@@ -31,8 +31,11 @@ export default {
   },
   methods: {
     login() {
+      // Basic encoded header
+      const Authorization = `Basic ${Buffer.from(`${this.auth.email}:${this.auth.password}`).toString('base64')}`;
+
       this.$store
-        .dispatch(`auth/${AUTH_LOGIN}`)
+        .dispatch(`auth/${AUTH_LOGIN}`, { Authorization })
         .then(() => {
           this.$root.$emit(ON_AUTH_STATE_CHANGE, true);
         })

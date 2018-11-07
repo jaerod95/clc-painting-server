@@ -1,6 +1,7 @@
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 import schema from '../graphql';
 import pjson from '../../package.json';
+import { authenticate, login } from '../controllers/authController';
 
 export default router => {
   // global controller
@@ -11,20 +12,22 @@ export default router => {
   });
   // Auth Routes
   // router.post('/register', authController.register);
-  // router
-  //   .route('/login')
-  //   .get(authController.login)
-  //   .post(authController.login);
-  // router.post('/authenticate', authController.authenticate);
+
+  router
+    .route('/login')
+    .get(login)
+    .post(login);
+
+  router.post('/authenticate', authenticate);
 
   // GRAPHQL Route
-  router.all(
-    '/graphql',
+  router.all('/graphql', [
+    authenticate,
     graphqlExpress({
       schema,
       tracing: true,
     }),
-  );
+  ]);
   router.get('/graphiql', graphiqlExpress({ endpointURL: '/v1/graphql' }));
 
   router.all('/health', (req, res) => {
