@@ -8,6 +8,16 @@ export const resolvers = {
     user(_, args) {
       return User.find({
         where: args,
+        include: [
+          {
+            model: db.Employee,
+            as: 'employees',
+          },
+          {
+            model: db.Project,
+            as: 'projects',
+          },
+        ],
       });
     },
   },
@@ -36,7 +46,7 @@ extend type Query {
 }
 
 extend type Mutation {
-  createUser(firstName: String!): User
+  createUser(username: String!, password: String!, firstName: String!, lastName: String!): User
   updateUser(id: Int!): User
   deleteUser(id: Int!): Int
 }
@@ -44,5 +54,8 @@ extend type Mutation {
 type User {
   id: Int
   firstName: String
+  lastName: String
+  employees: [Employee]
+  projects: [Project]
 }
 `;

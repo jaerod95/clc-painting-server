@@ -13,5 +13,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
   }, {});
+
+  User.associate = function (models) {
+    User.hasMany(models.Employee, { as: 'employees' });
+    User.hasMany(models.Project, { as: 'projects' });
+  };
+
   return User;
 };
