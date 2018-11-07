@@ -3,12 +3,8 @@
         <v-client-table :data="tableData" :columns="columns" :options="options"></v-client-table>
     </div>
 </template>
-      
+
 <script>
-import { ClientTable } from 'vue-tables-2';
-
-Vue.use(VueTables.ClientTable);
-
 export default {
   data() {
     return {
