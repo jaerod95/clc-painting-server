@@ -44,16 +44,16 @@ export default {
       // if authenticated
       if (auth) {
         this.$store.commit(`auth/${START_LOADING}`);
-        this.$router.replace('/app');
+        if (!this.$route.path.includes('app')) {
+          this.$router.replace('/app');
+        }
 
         this.$store
           .dispatch(REQUEST_INIT_APPLICATION)
           .then(() => {
-            console.log('THEN');
             this.$store.commit(`auth/${STOP_LOADING}`);
           })
           .catch(() => {
-            console.log('CATCH');
             this.$store
               .dispatch(`auth/${AUTH_LOGOUT}`)
               .then(() => {
@@ -74,7 +74,6 @@ export default {
     // /////////////////////////
     this.$store.dispatch(`cookie/${COOKIE_GET_USER_TOKEN}`).then(() => {
       if (this.$store.state.auth.token) {
-        console.log(this);
         /* eslint-disable */
         this.axios.defaults.headers.common[
           'Authorization'
