@@ -1,13 +1,25 @@
 <template>
   <v-layout>
     <v-navigation-drawer v-model="drawer" app fixed>
-      <v-list>
-        <v-list-tile v-for="link in routes" :key="link.name">
-          <v-list-tile class="title" :to="link.path">
-            {{link.name}}
-          </v-list-tile>
-        </v-list-tile>
-      </v-list>
+      <v-container pa-0 fluid fill-height>
+        <v-layout column justify-space-between>
+          <v-flex shrink>
+            <v-list>
+              <v-list-tile v-for="link in routes" :key="link.name">
+                <v-list-tile class="title" :to="link.path">
+                  {{link.name}}
+                </v-list-tile>
+              </v-list-tile>
+            </v-list>
+          </v-flex>
+          <v-flex shrink class="logout">
+            <hr/>
+            <v-list-tile @click="logout">
+              Logout
+            </v-list-tile>
+          </v-flex>
+        </v-layout>
+      </v-container>
     </v-navigation-drawer>
     <v-toolbar dark color="primary" app fixed>
       <v-toolbar-side-icon @click="toggleMenu"></v-toolbar-side-icon>
@@ -39,23 +51,33 @@
 </template>
 
 <script>
+import { AUTH_LOGOUT, ON_AUTH_STATE_CHANGE } from '@/store/constants';
 import { routes } from '../router';
 
 export default {
   data() {
     return {
-      drawer: false,
+      drawer: true,
       routes: routes.find(val => val.name === 'AppWrapper').children,
     };
   },
   methods: {
     toggleMenu() {
-      console.log(this);
       this.drawer = !this.drawer;
+    },
+    logout() {
+      this.$store.dispatch(`auth/${AUTH_LOGOUT}`).then(() => {
+        this.$root.$emit(ON_AUTH_STATE_CHANGE, false);
+      });
     },
   },
 };
 </script>
 
-<style>
+<style lang="scss">
+.logout {
+  &:hover {
+    color: #999;
+  }
+}
 </style>
