@@ -52,7 +52,7 @@ extend type Query {
 }
 
 extend type Mutation {
-  createProject(title: String!, address: String!, description: String!, priority: Int!, bossUserId: Int!): Project
+  createProject(title: String!, address: String!, description: String!, priority: Int!, userId: Int!): Project
   updateProject(id: Int!, title: String): Project
   deleteProject(id: Int!): Int
 }
