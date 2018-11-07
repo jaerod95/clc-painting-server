@@ -12,6 +12,8 @@ import {
   AUTH_LOGOUT,
   START_LOADING,
   STOP_LOADING,
+  COOKIE_GET_USER_TOKEN,
+  AUTH_VERIFY_USER_TOKEN,
 } from '@/store/constants';
 
 import { mapState } from 'vuex';
@@ -42,16 +44,16 @@ export default {
       // if authenticated
       if (auth) {
         this.$store.commit(`auth/${START_LOADING}`);
-        this.$router.replace('/app');
+        if (!this.$route.path.includes('app')) {
+          this.$router.replace('/app');
+        }
 
         this.$store
           .dispatch(REQUEST_INIT_APPLICATION)
           .then(() => {
-            console.log('THEN');
             this.$store.commit(`auth/${STOP_LOADING}`);
           })
           .catch(() => {
-            console.log('CATCH');
             this.$store
               .dispatch(`auth/${AUTH_LOGOUT}`)
               .then(() => {
@@ -67,9 +69,31 @@ export default {
       }
     });
 
-    // ///////////////////
-    // GET SAVED COOKIE //
-    // ///////////////////
+    // /////////////////////////
+    // Check Logged In Status //
+    // /////////////////////////
+    this.$store.dispatch(`cookie/${COOKIE_GET_USER_TOKEN}`).then(() => {
+      if (this.$store.state.auth.token) {
+        console.log('logged in');
+        /* eslint-disable */
+        this.axios.defaults.headers.common[
+          'Authorization'
+        ] = this.$store.state.auth.token;
+        /* eslint-enable */
+        this.$store
+          .dispatch(`auth/${AUTH_VERIFY_USER_TOKEN}`)
+          .then(() => {
+            this.$root.$emit(ON_AUTH_STATE_CHANGE, true);
+          })
+          .catch(() => {
+            this.$root.$emit(ON_AUTH_STATE_CHANGE, false);
+          });
+      } else {
+        console.log('logged out');
+        this.$store.commit(`auth/${STOP_LOADING}`);
+        this.$router.replace('/login');
+      }
+    });
   },
 };
 </script>
