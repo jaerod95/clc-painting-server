@@ -69,11 +69,6 @@ export default {
       ],
     };
   },
-  methods: {
-    doSomething(project) {
-      console.log(project);
-    },
-  },
 };
 </script>
 

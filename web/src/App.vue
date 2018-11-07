@@ -74,6 +74,7 @@ export default {
     // /////////////////////////
     this.$store.dispatch(`cookie/${COOKIE_GET_USER_TOKEN}`).then(() => {
       if (this.$store.state.auth.token) {
+        console.log('logged in');
         /* eslint-disable */
         this.axios.defaults.headers.common[
           'Authorization'
@@ -88,7 +89,9 @@ export default {
             this.$root.$emit(ON_AUTH_STATE_CHANGE, false);
           });
       } else {
+        console.log('logged out');
         this.$store.commit(`auth/${STOP_LOADING}`);
+        this.$router.replace('/login');
       }
     });
   },
