@@ -1,4 +1,4 @@
-module.exports = (sequelize, DataTypes) => {
+module.exports = function chemistry(sequelize, DataTypes) {
   const Chemistry = sequelize.define('Chemistry', {
     otherEmployeeId: {
       type: DataTypes.INTEGER,
@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
 
-  Chemistry.associate = function (models) {
+  Chemistry.associate = function associate(models) {
     Chemistry.belongsTo(models.Employee, { as: 'employee', foreignKey: 'employeeId' });
   };
 

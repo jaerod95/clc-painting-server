@@ -1,4 +1,4 @@
-module.exports = (sequelize, DataTypes) => {
+module.exports = function assignment(sequelize, DataTypes) {
   const Assignment = sequelize.define('Assignment', {
     startTime: {
       type: DataTypes.DATE,
@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
 
-  Assignment.associate = function (models) {
+  Assignment.associate = function associate(models) {
     Assignment.belongsTo(models.Employee, { as: 'employee', foreignKey: 'employeeId' });
     Assignment.belongsTo(models.Project, { as: 'project', foreignKey: 'projectId' });
   };

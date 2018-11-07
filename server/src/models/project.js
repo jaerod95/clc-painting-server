@@ -1,4 +1,4 @@
-module.exports = (sequelize, DataTypes) => {
+module.exports = function project(sequelize, DataTypes) {
   const Project = sequelize.define('Project', {
     title: {
       type: DataTypes.STRING,
@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
 
-  Project.associate = function (models) {
+  Project.associate = function associate(models) {
     Project.hasMany(models.Assignment, { as: 'assignments' });
     Project.belongsTo(models.User, { as: 'user', foreignKey: 'userId' });
   };

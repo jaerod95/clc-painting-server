@@ -105,10 +105,7 @@ export default {
     return {
       projectObject: {
         name: '',
-        employeeCnt: [
-          0,
-          25,
-        ],
+        employeeCnt: [0, 25],
         details: '',
         datePick: {
           startDate: '2018-04-05',
@@ -122,5 +119,4 @@ export default {
 </script>
 
 <style>
-
 </style>

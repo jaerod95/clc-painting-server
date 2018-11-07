@@ -1,4 +1,4 @@
-module.exports = (sequelize, DataTypes) => {
+module.exports = function hours(sequelize, DataTypes) {
   const Hours = sequelize.define('Hours', {
     startTime: {
       type: DataTypes.TIME,
@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
 
-  Hours.associate = function (models) {
+  Hours.associate = function associate(models) {
     Hours.belongsTo(models.Employee);
   };
 
