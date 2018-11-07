@@ -8,7 +8,7 @@
       <v-card elevation-4 class="loginCard">
         <v-flex pa-4>
         <v-text-field placeholder="email" v-model="auth.email"></v-text-field>
-        <v-text-field placeholder="password" v-model="auth.password"></v-text-field>
+        <v-text-field type="password" placeholder="password" v-model="auth.password"></v-text-field>
         <v-btn @click="login" color="primary">login</v-btn>
         </v-flex>
       </v-card>
@@ -24,8 +24,8 @@ export default {
   data() {
     return {
       auth: {
-        email: '',
-        password: '',
+        email: 'jason@frenteventures.com',
+        password: 'password',
       },
     };
   },

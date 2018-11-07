@@ -18,10 +18,15 @@ export const routes = [
   {
     path: '/app',
     name: 'AppWrapper',
-    redirect: '/app/projects',
+    redirect: '/app/dashboard',
     component: () =>
       import(/* webpackChunkName: "appWrapper" */ '@/views/AppWrapper.vue'),
     children: [
+      {
+        path: '/app/dashboard',
+        name: 'Dashboard',
+        component: () => import(/* webpackChunkName: "dashboard" */ '@/views/Dashboard.vue'),
+      },
       {
         path: '/app/projects',
         name: 'Projects',

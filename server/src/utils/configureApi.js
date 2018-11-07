@@ -1,7 +1,7 @@
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 import schema from '../graphql';
 import pjson from '../../package.json';
-import { authenticate, login } from '../controllers/authController';
+import { authenticate, checkAuth, login } from '../controllers/authController';
 
 export default router => {
   // global controller
@@ -18,11 +18,11 @@ export default router => {
     .get(login)
     .post(login);
 
-  router.post('/authenticate', authenticate);
+  router.route('/authenticate').all(authenticate);
 
   // GRAPHQL Route
   router.all('/graphql', [
-    authenticate,
+    checkAuth,
     graphqlExpress({
       schema,
       tracing: true,

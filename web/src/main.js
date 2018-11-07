@@ -1,13 +1,12 @@
-/* eslint-disable */
 import '@babel/polyfill';
 import Vue from 'vue';
+import './plugins/axios';
 import './plugins/vuetify';
 import './plugins/datepicker';
 import App from './App.vue';
 import router from './router';
 import store from './store';
 import './registerServiceWorker';
-/* eslint-enable */
 
 Vue.config.productionTip = false;
 

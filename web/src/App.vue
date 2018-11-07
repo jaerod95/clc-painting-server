@@ -12,6 +12,8 @@ import {
   AUTH_LOGOUT,
   START_LOADING,
   STOP_LOADING,
+  COOKIE_GET_USER_TOKEN,
+  AUTH_VERIFY_USER_TOKEN,
 } from '@/store/constants';
 
 import { mapState } from 'vuex';
@@ -34,8 +36,6 @@ export default {
   },
   // Global Handlers Here
   mounted() {
-    console.log(process.env);
-
     // ////////////////
     // AUTH HANDLER //
     // ////////////////
@@ -69,9 +69,29 @@ export default {
       }
     });
 
-    // ///////////////////
-    // GET SAVED COOKIE //
-    // ///////////////////
+    // /////////////////////////
+    // Check Logged In Status //
+    // /////////////////////////
+    this.$store.dispatch(`cookie/${COOKIE_GET_USER_TOKEN}`).then(() => {
+      if (this.$store.state.auth.token) {
+        console.log(this);
+        /* eslint-disable */
+        this.axios.defaults.headers.common[
+          'Authorization'
+        ] = this.$store.state.auth.token;
+        /* eslint-enable */
+        this.$store
+          .dispatch(`auth/${AUTH_VERIFY_USER_TOKEN}`)
+          .then(() => {
+            this.$root.$emit(ON_AUTH_STATE_CHANGE, true);
+          })
+          .catch(() => {
+            this.$root.$emit(ON_AUTH_STATE_CHANGE, false);
+          });
+      } else {
+        this.$store.commit(`auth/${STOP_LOADING}`);
+      }
+    });
   },
 };
 </script>

@@ -41,17 +41,25 @@ export async function login(req, res, next) {
 
 export function authenticate(req, res, next) {
   try {
-    if (process.env.NODE_ENV === 'production') {
-      const credentials = req.headers.authorization;
-      jwt.verify(credentials, process.env.SECRET, (err, token) => {
-        if (err) throw err;
-        console.info(token);
-        const nToken = jwt.sign(token, process.env.SECRET);
-        res.status(200).send({ token: nToken });
-      });
-    } else {
+    const credentials = req.headers.authorization;
+    jwt.verify(credentials, process.env.SECRET, (err, token) => {
+      if (err) throw err;
+      const nToken = jwt.sign(token, process.env.SECRET);
+      res.status(200).send({ token: nToken });
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+export function checkAuth(req, res, next) {
+  try {
+    const credentials = req.headers.authorization;
+    jwt.verify(credentials, process.env.SECRET, (err, token) => {
+      if (err) throw err;
+      res.headers.auth = token;
       next();
-    }
+    });
   } catch (error) {
     next(error);
   }
