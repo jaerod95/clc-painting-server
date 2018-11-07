@@ -1,11 +1,11 @@
 <template>
    <v-layout column>
       <v-flex xs12 sm6>
-        <v-toolbar color="indigo" dark>
+        <!-- <v-toolbar color="indigo" dark>
           <v-toolbar-title>ToolBar</v-toolbar-title>
-        </v-toolbar>
+        </v-toolbar> -->
           <v-layout row wrap pa-4>
-              <v-flex xs3 pa-3 v-for="employee in employees" :key="employee.name">
+              <v-flex xs2 pa-3 v-for="employee in employees" :key="employee.name">
                 <v-card class="employee-card" id="box">
                   <v-flex py-4 class="bordered-bottom">
                     <v-img
@@ -18,7 +18,7 @@
                   </v-flex>
                 </v-card>
               </v-flex>
-            </v-layout>
+          </v-layout>
         </v-flex>
      </v-layout>
 </template>
@@ -45,14 +45,14 @@ export default {
 
 <style lang="scss">
   .employee-card {
-    height: 250px;
+    height: 200px;
     margin:auto;
     border-radius:10px;
   }
 
   .employee-img {
-    height: 130px;
-    width: 130px;
+    height: 90px;
+    width: 90px;
     margin: auto;
     border-radius:100px;
   }
@@ -65,7 +65,7 @@ export default {
 
   .employee-name {
     text-align: center;
-    font-size:18px;
+    font-size:15px;
   }
 
 #box::before,
@@ -77,12 +77,6 @@ export default {
     border-color: transparent;
     border-style: solid;
 }
-
-// #box::before {
-//     border-width: 1.5em;
-//     border-right-color: #ccc;
-//     border-top-color: #ccc;
-// }
 
 #box::after {
     border-radius: 0.4em;
