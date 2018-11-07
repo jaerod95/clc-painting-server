@@ -3,6 +3,12 @@ import { makeExecutableSchema } from 'graphql-tools';
 
 // Do every time we create a model
 import { typeDefs as Employee, resolvers as employeeResolvers } from './employee';
+import { typeDefs as Project, resolvers as projectResolvers } from './project';
+import { typeDefs as User, resolvers as userResolvers } from './user';
+import { typeDefs as Skill, resolvers as skillResolvers } from './skill';
+import { typeDefs as EmployeeSkill, resolvers as employeeSkillResolvers } from './employeeSkill';
+import { typeDefs as Assignment, resolvers as assignmentResolvers } from './assignment';
+import { typeDefs as Chemistry, resolvers as chemistryResolvers } from './chemistry';
 
 
 const Query = `
@@ -20,8 +26,20 @@ export default makeExecutableSchema({
   typeDefs: [
     Query,
     Employee,
+    Project,
+    User,
+    Skill,
+    EmployeeSkill,
+    Assignment,
+    Chemistry,
   ],
   resolvers: merge(
     employeeResolvers,
+    projectResolvers,
+    userResolvers,
+    skillResolvers,
+    employeeSkillResolvers,
+    assignmentResolvers,
+    chemistryResolvers,
   ),
 });
