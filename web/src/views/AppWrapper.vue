@@ -57,7 +57,7 @@ import { routes } from '../router';
 export default {
   data() {
     return {
-      drawer: true,
+      drawer: false,
       routes: routes.find(val => val.name === 'AppWrapper').children,
     };
   },

@@ -25,13 +25,22 @@ export const routes = [
       {
         path: '/app/dashboard',
         name: 'Dashboard',
-        component: () => import(/* webpackChunkName: "dashboard" */ '@/views/Dashboard.vue'),
+        component: () =>
+          import(/* webpackChunkName: "dashboard" */ '@/views/Dashboard.vue'),
       },
       {
         path: '/app/projects',
         name: 'Projects',
         component: () =>
           import(/* webpackChunkName: "projects" */ '@/views/Projects.vue'),
+        children: [
+          {
+            path: '/app/projects/:id',
+            name: 'Project Details',
+            component: () =>
+              import(/* webpackChunkName: "projects" */ '@/views/ProjectCRUD.vue'),
+          },
+        ],
       },
       {
         path: '/app/employees',
