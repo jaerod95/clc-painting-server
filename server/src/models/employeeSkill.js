@@ -7,8 +7,8 @@ module.exports = function employeeSkill(sequelize, DataTypes) {
 
 
   EmployeeSkill.associate = function associate(models) {
-    EmployeeSkill.belongsTo(models.Employee);
-    EmployeeSkill.belongsTo(models.Skill);
+    EmployeeSkill.belongsTo(models.Employee, { as: 'employee', foreignKey: 'employeeId' });
+    EmployeeSkill.belongsTo(models.Skill, { as: 'skill', foreignKey: 'skillId' });
   };
 
   return EmployeeSkill;

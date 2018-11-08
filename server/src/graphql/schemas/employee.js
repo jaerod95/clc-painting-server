@@ -16,6 +16,18 @@ export const resolvers = {
             model: db.Chemistry,
             as: 'chemistry',
           },
+          {
+            model: db.EmployeeSkill,
+            as: 'employeeSkills',
+          },
+          {
+            model: db.Hours,
+            as: 'hours',
+          },
+          {
+            model: db.Assignment,
+            as: 'assignments',
+          },
         ],
       });
     },
@@ -63,5 +75,7 @@ type Employee {
     inAttendance: Boolean
     user: User
     chemistry: [Chemistry]
+    employeeSkills: [EmployeeSkill]
+    assignments: [Assignment]
 }
 `;
