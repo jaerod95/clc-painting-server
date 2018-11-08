@@ -47,7 +47,7 @@ extend type Query {
 
 extend type Mutation {
   createChemistry(firstEmpId: Int!, otherEmployeeId: Int!, chemistryLevel: Int!): Chemistry
-  updateChemistry(id: Int!, name: String): Chemistry
+  updateChemistry(id: Int!, otherEmployeeId: Int, chemistryLevel: Int): Chemistry
   deleteChemistry(id: Int!): Int
 }
 

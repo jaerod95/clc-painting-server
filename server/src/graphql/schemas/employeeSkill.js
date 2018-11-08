@@ -44,7 +44,7 @@ extend type Query {
 
 extend type Mutation {
   createEmployeeSkill(employeeId: Int!, skillId: Int!, skillLevel: Int!): Skill
-  updateEmployeeSkill(id: Int!, name: String): Skill
+  updateEmployeeSkill(id: Int!, skillLevel: Int): Skill
   deleteEmployeeSkill(id: Int!): Int
 }
 

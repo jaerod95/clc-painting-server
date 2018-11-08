@@ -23,8 +23,7 @@ export const resolvers = {
   Mutation: {
     createProject(_, args) {
       const projArgs = args;
-      db.User.findOne({ where: { id: projArgs.bossUserId } }).then(user => {
-        projArgs.isFinished = false;
+      db.User.findOne({ where: { id: projArgs.userId } }).then(user => {
         delete projArgs.bossUserId;
         return Project.create(projArgs).then(project => {
           project.setUser(user);
@@ -52,15 +51,18 @@ extend type Query {
 }
 
 extend type Mutation {
-  createProject(title: String!, address: String!, description: String!, priority: Int!, userId: Int!): Project
-  updateProject(id: Int!, title: String): Project
+  createProject(title: String!, address: String!, description: String!, priority: Int!, isFinished: Boolean, userId: Int!): Project
+  updateProject(id: Int!, title: String, address: String, description: String, priority: Int, isFinished: Boolean): Project
   deleteProject(id: Int!): Int
 }
 
 type Project {
   id: Int
   title: String
-  owner: String
+  address: String
+  description: String
+  priority: Int
+  isFinished: Boolean
   assignments: [Assignment]
   user: User
 }
