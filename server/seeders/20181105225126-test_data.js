@@ -80,7 +80,7 @@ module.exports = {
         updatedAt: new Date(getDateTime(false)),
       });
       if (u == 0) {
-        u.username = 'jason@frenteventures.com';
+        users[u].username = 'jason@frenteventures.com';
       }
       console.log('USER');
       for (p; p < NUMBER_OF_PROJECTS_PER_USER; p++) {
