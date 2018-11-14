@@ -39,7 +39,7 @@
   },
   "scripts": {
     "build": "node build/build.js",
-    "dev": "yarn run test && nodemon src/index.js --exec 'yarn run lint && babel-node'",
+    "dev": "nodemon src/index.js --exec 'yarn run lint && babel-node'",
     "test": "NODE_ENV=test mocha --require babel-core/register tests/*.test.js",
     "lint": "eslint src"
   },
