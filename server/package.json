@@ -27,6 +27,7 @@
     "babel-cli": "6.26.0",
     "babel-eslint": "8",
     "babel-preset-env": "1.7.0",
+    "casual": "^1.5.19",
     "chai": "4.2.0",
     "eslint": "4.x",
     "eslint-config-airbnb-base": "13.1.0",
@@ -43,5 +44,5 @@
     "lint": "eslint src"
   },
   "author": "",
-  "license": "MIT"
+  "license": "ISC"
 }

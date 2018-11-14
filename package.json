@@ -4,6 +4,7 @@
   "description": "Basic Readme for Server Project",
   "main": "index.js",
   "scripts": {
+    "postinstall": "cd ./server && yarn && cd ../web && yarn",
     "dev": "concurrently --kill-others --names \"SERVER,WEB\" -c \"bgBlue.bold,bgMagenta.bold\" \"yarn run dev:server\" \"yarn run dev:web\"",
     "dev:server": "cd ./server && yarn run dev",
     "dev:web": "cd ./web && yarn run dev"
