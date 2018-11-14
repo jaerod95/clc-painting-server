@@ -25,7 +25,7 @@ export default {
     return {
       auth: {
         email: 'jason@frenteventures.com',
-        password: 'password',
+        password: 'Password1',
       },
     };
   },
