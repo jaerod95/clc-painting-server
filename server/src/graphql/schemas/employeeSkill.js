@@ -7,6 +7,16 @@ export const resolvers = {
     employeeSkill(_, args) {
       return EmployeeSkill.find({
         where: args,
+        include: [
+          {
+            model: db.Employee,
+            as: 'employee',
+          },
+          {
+            model: db.Skill,
+            as: 'skill',
+          },
+        ],
       });
     },
   },
@@ -44,12 +54,14 @@ extend type Query {
 
 extend type Mutation {
   createEmployeeSkill(employeeId: Int!, skillId: Int!, skillLevel: Int!): Skill
-  updateEmployeeSkill(id: Int!, name: String): Skill
+  updateEmployeeSkill(id: Int!, skillLevel: Int): Skill
   deleteEmployeeSkill(id: Int!): Int
 }
 
 type EmployeeSkill {
     id: Int
+    employee: Employee
+    skill: Skill
     skillLevel: Int
 }
 `;

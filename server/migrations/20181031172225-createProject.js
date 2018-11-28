@@ -23,6 +23,7 @@ module.exports = {
       },
       isFinished: {
         allowNull: false,
+        defaultValue: false,
         type: Sequelize.BOOLEAN
       },
       priority: {

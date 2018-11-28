@@ -13,9 +13,9 @@ module.exports = function employee(sequelize, DataTypes) {
 
   Employee.associate = function associate(models) {
     Employee.belongsTo(models.User, { as: 'user', foreignKey: 'userId' });
-    Employee.hasMany(models.EmployeeSkill);
-    Employee.hasMany(models.Hours);
-    Employee.hasMany(models.Assignment);
+    Employee.hasMany(models.EmployeeSkill, { as: 'employeeSkills' });
+    Employee.hasMany(models.Hours, { as: 'hours' });
+    Employee.hasMany(models.Assignment, { as: 'assignments' });
     Employee.hasMany(models.Chemistry, { as: 'chemistry' });
   };
 

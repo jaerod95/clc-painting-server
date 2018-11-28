@@ -19,7 +19,8 @@ module.exports = {
         type: Sequelize.STRING
       },
       inAttendance: {
-        allowNull: true,
+        allowNull: false,
+        defaultValue: false,
         type: Sequelize.BOOLEAN,
       },
       userId: {
