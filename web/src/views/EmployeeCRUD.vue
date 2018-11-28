@@ -1,6 +1,6 @@
 <template>
   <v-layout align-center fill-height row>
-    <v-flex xs12 sm6 offset-sm3 md4 offset-md4>
+    <v-flex contain>
       <v-card elevation-4 class='employee'>
         <v-layout row justify-end>
           <v-flex xs12 sm5 md5 offset-xs0>
