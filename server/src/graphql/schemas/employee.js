@@ -16,6 +16,18 @@ export const resolvers = {
             model: db.Chemistry,
             as: 'chemistry',
           },
+          {
+            model: db.EmployeeSkill,
+            as: 'employeeSkills',
+          },
+          {
+            model: db.Hours,
+            as: 'hours',
+          },
+          {
+            model: db.Assignment,
+            as: 'assignments',
+          },
         ],
       });
     },
@@ -24,7 +36,6 @@ export const resolvers = {
     createEmployee(_, args) {
       const empArgs = args;
       db.User.findOne({ where: { id: empArgs.bossUserId } }).then(user => {
-        empArgs.inAttendance = false;
         delete empArgs.bossUserId;
         return Employee.create(empArgs).then(employee => {
           employee.setUser(user);
@@ -52,8 +63,8 @@ extend type Query {
 }
 
 extend type Mutation {
-  createEmployee(firstName: String!, lastName: String!, bossUserId: Int!): Employee
-  updateEmployee(id: Int!, firstName: String): Employee
+  createEmployee(firstName: String!, lastName: String!, inAttendance: Boolean, bossUserId: Int!): Employee
+  updateEmployee(id: Int!, firstName: String, lastName: String, inAttendance: Boolean): Employee
   deleteEmployee(id: Int!): Int
 }
 
@@ -64,5 +75,7 @@ type Employee {
     inAttendance: Boolean
     user: User
     chemistry: [Chemistry]
+    employeeSkills: [EmployeeSkill]
+    assignments: [Assignment]
 }
 `;

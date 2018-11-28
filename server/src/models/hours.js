@@ -12,7 +12,7 @@ module.exports = function hours(sequelize, DataTypes) {
   }, {});
 
   Hours.associate = function associate(models) {
-    Hours.belongsTo(models.Employee);
+    Hours.belongsTo(models.Employee, { as: 'employee', foreignKey: 'employeeId' });
   };
 
   return Hours;

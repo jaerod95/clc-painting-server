@@ -1,6 +1,9 @@
+//'use strict';
+
+const CHUNK_SIZE = 100;
 const casual = require('casual');
 const bcrypt = require('bcrypt');
-const CHUNK_SIZE = 100;
+
 let dateTime = new Date().valueOf() - 100000000;
 function getDateTime(updateTime = true) {
   if (updateTime) {
@@ -15,6 +18,12 @@ function getRandInt(getRandom = true) {
     return Math.random() * (max - min) + min;
   }
 }
+function getRandBool(getRandom = true) {
+  if (getRandom) {
+    rand = Math.round(Math.random())
+    return rand
+  }
+}
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     let projects = [];
@@ -25,16 +34,21 @@ module.exports = {
     let assignments = [];
     let chemistry = [];
     let employeeSkills = [];
+    let chemistries = [];
     let p = 0;
     let u = 0;
     let e = 0;
     let s = 0;
     let h = 0;
+    let c = 0;
+    let a = 0;
+    const NUMBER_OF_CHEMISTRIES = 2;
     const NUMBER_OF_USERS = 5;
     const NUMBER_OF_PROJECTS_PER_USER = 10;
     const NUMBER_OF_EMPLOYEES_ASSIGNED_TO_USERS = 40;
     const SKILLS_PER_EMPLOYEE = 3;
     const NUMBER_SKILLS_TOTAL = 5;
+    const NUMBER_OF_ASSIGNMENTS_PER_EMP = 5;
     for (s; s < NUMBER_SKILLS_TOTAL; s++) {
       skills.push({
         name: '',
@@ -60,16 +74,47 @@ module.exports = {
     console.log('SKILLS');
 
     try {
+      await queryInterface.removeConstraint('Assignments', 'assignments_ibfk_1', {});
+    } catch (error) {
+      console.log('assignments constraint 1 does not exist')
+    }
+    try {
+      await queryInterface.removeConstraint('Assignments', 'assignments_ibfk_2', {});
+    } catch (error) {
+      console.log('assignments constraint 2 does not exist')
+    }
+    try {
+      await queryInterface.removeConstraint('EmployeeSkills', 'employeeskills_ibfk_1', {});
+    } catch (error) {
+      console.log('employeeSkills 1 constraint does not exist')
+    }
+    try {
+      await queryInterface.removeConstraint('EmployeeSkills', 'employeeskills_ibfk_2', {});
+    } catch (error) {
+      console.log('employeeSkilss 2 constraint does not exist')
+    }
+    try {
+      await queryInterface.removeConstraint('Chemistries', 'chemistries_ibfk_1', {});
+    } catch (error) {
+      console.log('chemistry constraint does not exist')
+    }
+    try {
       await queryInterface.removeConstraint('Projects', 'projects_ibfk_1', {});
-      await queryInterface.removeConstraint(
-        'Employees',
-        'employees_ibfk_1',
-        {},
-      );
+    } catch (error) {
+      console.log('project constraint does not exist')
+    }
+    try {
+      await queryInterface.removeConstraint('Employees', 'employees_ibfk_1', {});
+    } catch (error) {
+      console.log('employee constraint does not exist')
+    }
+    try {
       await queryInterface.removeConstraint('Hours', 'hours_ibfk_1', {});
     } catch (error) {
-      console.log('constraints do not exist');
+      console.log('hours constraint does not exist')
     }
+
+
     for (u; u < NUMBER_OF_USERS; u++) {
       users.push({
         username: casual.username,
@@ -101,13 +146,16 @@ module.exports = {
         employees.push({
           firstName: casual.first_name,
           lastName: casual.last_name,
-          inAttendance: getRandInt(true) % 2,
+          inAttendance: getRandBool(true),
           userId: u,
           createdAt: new Date(getDateTime(false)),
           updatedAt: new Date(getDateTime(false)),
         });
+        console.log('EMPLOYEE');
         //each employee needs skills, chemistry, hours, and assignments
         //Setting hours for each employee for each day of the week
+
+        //I hard coded the hours for now because casual.time was not what we wanted
         each_day = 1;
         for (each_day; each_day < 7; each_day++) {
           hours.push({
@@ -119,16 +167,41 @@ module.exports = {
             updatedAt: new Date(getDateTime(false)),
           });
         }
+        console.log('HOURS')
         z = 0;
         for (z; z < SKILLS_PER_EMPLOYEE; z++) {
           skills.push({
             skillLevel: getRandInt(true),
-            //employeeId: e,
-            //skillId: Math.ceil(getRandInt(true) / 2),
+            employeeId: e,
+            skillId: z, //Math.ceil(getRandInt(true) / 2),
             createdAt: new Date(getDateTime(false)),
             updatedAt: new Date(getDateTime(false)),
           });
         }
+        console.log('EMPLOYEE SKILLS')
+        c = 0;
+        for (c; c < NUMBER_OF_CHEMISTRIES; c++) {
+          chemistries.push({
+            chemistryLevel: getRandInt(true),
+            employeeId: e,
+            otherEmployeeId: getRandInt(true),
+            createdAt: new Date(getDateTime(false)),
+            updatedAt: new Date(getDateTime(false)),
+          });
+        }
+        console.log('CHEMISTRY')
+        a = 0;
+        for (a; a < NUMBER_OF_ASSIGNMENTS_PER_EMP; a++) {
+          assignments.push({
+            startTime: new Date(getDateTime(false)),
+            endTime: new Date(getDateTime(false)),
+            employeeId: e,
+            projectId: getRandInt(true),
+            createdAt: new Date(getDateTime(false)),
+            updatedAt: new Date(getDateTime(false)),
+          });
+        }
+
       }
       e = 0;
       await queryInterface.bulkInsert('Users', users, {
@@ -156,6 +229,16 @@ module.exports = {
       });
       skills = null;
       skills = [];
+      await queryInterface.bulkInsert('Chemistries', chemistries, {
+        individualHooks: true,
+      });
+      chemistries = null;
+      chemistries = [];
+      await queryInterface.bulkInsert('assignments', assignments, {
+        individualHooks: true,
+      });
+      assignments = null;
+      assignments = [];
     }
 
     // await queryInterface.addConstraint('Projects', ['userId'], {
@@ -200,6 +283,7 @@ module.exports = {
     await queryInterface.bulkDelete('Skills', {}, {});
     await queryInterface.bulkDelete('Hours', {}, {});
     await queryInterface.bulkDelete('EmployeeSkills', {}, {});
-    //await queryInterface.bulkDelete('Assignments', {}, {});
+    await queryInterface.bulkDelete('Chemistries', {}, {});
+    await queryInterface.bulkDelete('Assignments', {}, {});
   },
 };

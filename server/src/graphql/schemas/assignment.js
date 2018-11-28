@@ -54,7 +54,7 @@ extend type Query {
 
 extend type Mutation {
   createAssignment(startTime: Int!, endTime: Int!, employeeId: Int!, projectId: Int!): Assignment
-  updateAssignment(id: Int!, name: String): Assignment
+  updateAssignment(id: Int!, startTime: Int!, endTime: Int!): Assignment
   deleteAssignment(id: Int!): Assignment
 }
 
