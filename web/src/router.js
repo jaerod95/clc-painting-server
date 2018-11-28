@@ -49,6 +49,12 @@ export const routes = [
           import(/* webpackChunkName: "employees" */ '@/views/Employees.vue'),
       },
       {
+        path: '/app/employees/table',
+        name: 'EmployeeTable',
+        component: () =>
+          import(/* webpackChunkName: "employees" */ '@/views/EmployeeTable.vue'),
+      },
+      {
         path: '/app/create/employee',
         name: 'EmployeeCRUD',
         component: () =>
