@@ -74,6 +74,7 @@
 
 <script>
 import VueCtkDateTimePicker from 'vue-ctk-date-time-picker';
+import router from '../router';
 
 export default {
   components: {
@@ -111,9 +112,11 @@ export default {
       alert('deleted');
     },
     onButtonCancel() {
+      router.push({ name: 'EmployeeTable' });
       alert('canceled');
     },
     onButtonDone() {
+      router.push({ name: 'EmployeeTable' });
       alert('done');
     },
   },
