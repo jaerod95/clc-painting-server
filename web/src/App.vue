@@ -48,12 +48,16 @@ export default {
           this.$router.replace('/app');
         }
 
+        console.log('dispatching...');
+
         this.$store
           .dispatch(REQUEST_INIT_APPLICATION)
           .then(() => {
+            console.log('STOPPING GOOD LOAD');
             this.$store.commit(`auth/${STOP_LOADING}`);
           })
           .catch(() => {
+            console.log('STOPPING LOAD');
             this.$store
               .dispatch(`auth/${AUTH_LOGOUT}`)
               .then(() => {
