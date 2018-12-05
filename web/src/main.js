@@ -4,6 +4,7 @@ import './plugins/axios';
 import './plugins/vuetify';
 import './plugins/datepicker';
 import './plugins/tableViews';
+import './plugins/apollo';
 import App from './App.vue';
 import router from './router';
 import store from './store';
