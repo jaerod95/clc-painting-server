@@ -4,6 +4,22 @@ const { Project } = db;
 
 export const resolvers = {
   Query: {
+    allProjects(_, __) {
+      console.log(__);
+      return Project.find({
+        where: { userId: 0 },
+        // include: [
+        //   {
+        //     model: db.User,
+        //     as: 'user',
+        //   },
+        //   {
+        //     model: db.Assignment,
+        //     as: 'assignments',
+        //   },
+        // ],
+      });
+    },
     project(_, args) {
       return Project.find({
         where: args,
@@ -48,6 +64,7 @@ export const typeDefs = `
 
 extend type Query {
   project(id:Int!): Project
+  allProjects(userId: Int!): [Project]
 }
 
 extend type Mutation {

@@ -124,10 +124,10 @@ module.exports = {
         createdAt: new Date(getDateTime(false)),
         updatedAt: new Date(getDateTime(false)),
       });
-      if (u == 0) {
+      if (u == 0
+        ) {
         users[u].username = 'jason@frenteventures.com';
       }
-      console.log('USER');
       for (p; p < NUMBER_OF_PROJECTS_PER_USER; p++) {
         projects.push({
           title: casual.title,

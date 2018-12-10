@@ -16,6 +16,12 @@ export const resolvers = {
           {
             model: db.Project,
             as: 'projects',
+            include: [
+              {
+                model: db.Assignment,
+                as: 'assignments',
+              },
+            ],
           },
         ],
       });

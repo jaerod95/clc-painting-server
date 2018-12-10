@@ -12,60 +12,23 @@ export default {
         .query({
           query: gql`
           {
-            user(id: "${id}") {
+            user(id: ${id}) {
               id
               firstName
               lastName
-            }
-            allContacts(userGuid:"${id}") {
-              guid
-              firstName
-              lastName
-              email
-              phone
-              address
-              tags {
-                guid
-              }
-              campaigns {
-                guid
-                campaignGuid
-                contactGuid
-                startDate
-                campaign {
-                  guid
-                  userGuid
-                  name
-                }
-              }
-              campaignActions {
-                guid
-                campaignActionGuid
-                contactGuid
-                actionDate
-                campaignAction {
-                  guid
-                  campaignGuid
-                  name
-                  description
-                  actionType
-                  actionInterval
-                }
-              }
-            }
-            allTags(userGuid:"${id}") {
-              guid
-              tagName
-            }
-            allCampaigns(userGuid:"${id}") {
-              guid
-              name
-              actions {
-                guid
-                name
+              projects {
+                id
+                title
+                address
                 description
-                actionType
-                actionInterval
+                priority
+                isFinished
+              }
+              employees {
+                id
+                firstName
+                lastName
+                inAttendance
               }
             }
           }
@@ -89,6 +52,7 @@ export default {
           resolve(response);
         })
         .catch(error => {
+          console.log('IN ERR');
           console.error(error);
           reject(error);
         });
