@@ -2,15 +2,15 @@ export default {
   projects: [
     {
       id: 1,
-      title: 'Cool Project 1',
+      title: 'Melbourne House',
       numberOfEmployees: 12,
-      address: '1234 Cool Lane',
+      address: '1257 Meadow Street, Meridian 93102',
       datePick: {
         startDate: '2018-04-05',
         endDate: '2018-04-20',
       },
       description:
-        'Just your typical paint job. You got some walls, some ceilings, and some outside stuff. Should take about 5 people',
+        'Indoor/Outdoor painting job for a residential house. 3 days of work expected.',
       isFinished: false,
       priority: 55,
       indOutBoth: 'indoor',
@@ -19,15 +19,15 @@ export default {
     },
     {
       id: 2,
-      title: 'Cool Project 2',
+      title: 'Austen Elementary School',
       numberOfEmployees: 2,
-      address: '1234 Cool Lane',
+      address: '1436 MacLane Street, Austen 93167',
       datePick: {
         startDate: '2018-04-05',
         endDate: '2018-04-20',
       },
       description:
-        'Just your typical paint job. You got some walls, some ceilings, and some outside stuff. Should take about 5 people',
+        'The Austin Elementary School is in need a of fresh coat of paint. A week worth of work expected',
       isFinished: false,
       priority: 55,
       indOutBoth: 'indoor',
@@ -36,15 +36,15 @@ export default {
     },
     {
       id: 3,
-      title: 'Cool Project 3',
+      title: 'Meridian Gas Station',
       numberOfEmployees: 22,
-      address: '1234 Cool Lane',
+      address: '284 E 300 S, Meridian 93102',
       datePick: {
         startDate: '2018-04-05',
         endDate: '2018-04-20',
       },
       description:
-        'Just your typical paint job. You got some walls, some ceilings, and some outside stuff. Should take about 5 people',
+        'We will work on both the inside and outside of the gas station. Special paint will be needed for the outide walls. 1 week of work expected',
       isFinished: false,
       priority: 55,
       indOutBoth: 'indoor',
@@ -53,15 +53,15 @@ export default {
     },
     {
       id: 4,
-      title: 'Cool Project 4',
+      title: 'Vista Appartment Complex',
       numberOfEmployees: 6,
-      address: '1234 Cool Lane',
+      address: '2434 Highland Drive, Austen 93167',
       datePick: {
         startDate: '2018-04-05',
         endDate: '2018-04-20',
       },
       description:
-        'Just your typical paint job. You got some walls, some ceilings, and some outside stuff. Should take about 5 people',
+        'Outdoor painting job only. The complex consists of 3 buildings. Work is not urgent so it will not require more employees than expected. 2 weeks of work expected',
       isFinished: false,
       priority: 55,
       indOutBoth: 'indoor',
