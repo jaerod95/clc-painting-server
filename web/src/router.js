@@ -29,6 +29,11 @@ export const routes = [
           import(/* webpackChunkName: "dashboard" */ '@/views/Dashboard.vue'),
       },
       {
+        path: '/app/results',
+        name: 'Results',
+        component: () => import('@/views/Results.vue'),
+      },
+      {
         path: '/app/projects',
         name: 'Projects',
         component: () =>

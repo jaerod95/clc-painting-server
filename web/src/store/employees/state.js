@@ -1,13 +1,13 @@
 export default {
   employees: [
-    { name: 'Bowb', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg' },
-    { name: 'Twom', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg' },
-    { name: 'Dwavid', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg' },
-    { name: 'Beob', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg' },
-    { name: 'Teom', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg' },
-    { name: 'Deavid', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg' },
-    { name: 'Bob', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg' },
-    { name: 'Tom', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg' },
-    { name: 'David', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg' },
+    { id: 1, name: 'David Smith', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg' },
+    { id: 2, name: 'Thomas Johnson', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg' },
+    { id: 3, name: 'Jeremy Taylor', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg' },
+    { id: 4, name: 'Mary Jones', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg' },
+    { id: 5, name: 'Alexander Barnes', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg' },
+    { id: 6, name: 'Josh Tibbits', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg' },
+    { id: 7, name: 'Ashley Golding', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg' },
+    { id: 8, name: 'Ben Turner', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg' },
+    { id: 9, name: 'Stephanie Vasquez', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg' },
   ],
 };

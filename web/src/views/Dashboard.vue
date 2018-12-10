@@ -1,48 +1,5 @@
 <template>
-<v-layout>
-  <v-layout v-if="generated"> 
-    <v-layout id='projects' :class="[generated ? '' : 'hidden']" row wrap>
-      <v-flex
-        xs12
-        sm6
-        md4
-        lg3
-        pa-4
-        v-if="sorted == true"
-        v-for="project in projects"
-        :key="project.id"
-      >
-        <v-card
-          class='card'
-          ripple
-          hover
-          @click.native="project.dialog = !project.dialog"
-          :to="`/app/projects/${project.id}`"
-        >
-          <v-card
-            class='project-color'
-            :color="project.color || colors[project.id % colors.length]"
-            flat
-          ></v-card>
-          <p id="title">{{project.title}}</p>
-          <ul id="employee-list">
-            <li v-for="employee in project.employees" :key="employee">
-            {{ employee }}
-            </li>
-          </ul>
-          <v-card-text class='desc text-truncate' v-for="employee in project.employees" :key="employee">
-            <p>{{employee}}</p>
-          </v-card-text>
-          <v-dialog v-model="project.dialog">
-            <v-card class='dialog-card'>
-              <router-view/>
-            </v-card>
-          </v-dialog>
-        </v-card>
-      </v-flex>
-    </v-layout>
-  </v-layout>
-  <v-layout v-else column>
+  <v-layout column>
     <v-flex row>
        <main class="customMain main-content col-sm-12 p-0 ">
           <!-- / .main-navbar -->
@@ -146,7 +103,6 @@
           <v-btn mt-5 color="primary" class="sortButton" @click="sort">Generate Ideal Schedule</v-btn>
         </v-flex>
   </v-layout>
-</v-layout>
 </template>
 
 <script>
@@ -190,7 +146,6 @@ export default {
     return {
       title: 'Dashboard',
       sorted: false,
-      generated: false,
     };
   },
   computed: mapState({
@@ -199,8 +154,7 @@ export default {
   methods: {
     sort() {
       this.$store.commit(`auth/${START_LOADING}`);
-      this.generated = true;
-      this.$router.push({route: '/app/dashboard/results'})
+      this.$router.push({ name: 'Results' })
       setTimeout(() => {this.$store.commit(`auth/${STOP_LOADING}`);}, 2000);
     }
   }
