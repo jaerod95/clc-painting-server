@@ -4,6 +4,7 @@ import Vuex from 'vuex';
 import auth from './auth';
 import cookie from './cookie';
 import projects from './projects';
+import employees from './employees';
 
 import actions from './actions';
 
@@ -14,6 +15,7 @@ const store = new Vuex.Store({
     auth,
     cookie,
     projects,
+    employees,
   },
   actions,
 });

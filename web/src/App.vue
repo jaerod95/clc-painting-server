@@ -1,5 +1,6 @@
 <template>
   <v-app id="app">
+    <h1 class="jr-loading" v-if="isLoading">LOADING...</h1>
     <lottie :options="defaultOptions" v-if="isLoading" />
     <router-view v-else/>
   </v-app>
@@ -36,70 +37,72 @@ export default {
   },
   // Global Handlers Here
   mounted() {
+  },
+}
     // ////////////////
     // AUTH HANDLER //
     // ////////////////
 
-    this.$root.$on(ON_AUTH_STATE_CHANGE, auth => {
-      // if authenticated
-      if (auth) {
-        this.$store.commit(`auth/${START_LOADING}`);
-        if (!this.$route.path.includes('app')) {
-          this.$router.replace('/app');
-        }
+//     this.$root.$on(ON_AUTH_STATE_CHANGE, auth => {
+//       // if authenticated
+//       if (auth) {
+//         this.$store.commit(`auth/${START_LOADING}`);
+//         if (!this.$route.path.includes('app')) {
+//           this.$router.replace('/app');
+//         }
 
-        console.log('dispatching...');
+//         console.log('dispatching...');
 
-        this.$store
-          .dispatch(REQUEST_INIT_APPLICATION)
-          .then(() => {
-            console.log('STOPPING GOOD LOAD');
-            this.$store.commit(`auth/${STOP_LOADING}`);
-          })
-          .catch(() => {
-            console.log('STOPPING LOAD');
-            this.$store
-              .dispatch(`auth/${AUTH_LOGOUT}`)
-              .then(() => {
-                this.$root.$emit(ON_AUTH_STATE_CHANGE, false);
-              })
-              .catch(() => {
-                this.$root.$emit(ON_AUTH_STATE_CHANGE, false);
-              });
-          });
-      } else {
-        this.$router.replace('/login');
-        this.$store.commit(`auth/${STOP_LOADING}`);
-      }
-    });
+//         this.$store
+//           .dispatch(REQUEST_INIT_APPLICATION)
+//           .then(() => {
+//             console.log('STOPPING GOOD LOAD');
+//             this.$store.commit(`auth/${STOP_LOADING}`);
+//           })
+//           .catch(() => {
+//             console.log('STOPPING LOAD');
+//             this.$store
+//               .dispatch(`auth/${AUTH_LOGOUT}`)
+//               .then(() => {
+//                 this.$root.$emit(ON_AUTH_STATE_CHANGE, false);
+//               })
+//               .catch(() => {
+//                 this.$root.$emit(ON_AUTH_STATE_CHANGE, false);
+//               });
+//           });
+//       } else {
+//         this.$router.replace('/login');
+//         this.$store.commit(`auth/${STOP_LOADING}`);
+//       }
+//     });
 
-    // /////////////////////////
-    // Check Logged In Status //
-    // /////////////////////////
-    this.$store.dispatch(`cookie/${COOKIE_GET_USER_TOKEN}`).then(() => {
-      if (this.$store.state.auth.token) {
-        console.log('logged in');
-        /* eslint-disable */
-        this.axios.defaults.headers.common[
-          'Authorization'
-        ] = this.$store.state.auth.token;
-        /* eslint-enable */
-        this.$store
-          .dispatch(`auth/${AUTH_VERIFY_USER_TOKEN}`)
-          .then(() => {
-            this.$root.$emit(ON_AUTH_STATE_CHANGE, true);
-          })
-          .catch(() => {
-            this.$root.$emit(ON_AUTH_STATE_CHANGE, false);
-          });
-      } else {
-        console.log('logged out');
-        this.$store.commit(`auth/${STOP_LOADING}`);
-        this.$router.replace('/login');
-      }
-    });
-  },
-};
+//     // /////////////////////////
+//     // Check Logged In Status //
+//     // /////////////////////////
+//     this.$store.dispatch(`cookie/${COOKIE_GET_USER_TOKEN}`).then(() => {
+//       if (this.$store.state.auth.token) {
+//         console.log('logged in');
+//         /* eslint-disable */
+//         this.axios.defaults.headers.common[
+//           'Authorization'
+//         ] = this.$store.state.auth.token;
+//         /* eslint-enable */
+//         this.$store
+//           .dispatch(`auth/${AUTH_VERIFY_USER_TOKEN}`)
+//           .then(() => {
+//             this.$root.$emit(ON_AUTH_STATE_CHANGE, true);
+//           })
+//           .catch(() => {
+//             this.$root.$emit(ON_AUTH_STATE_CHANGE, false);
+//           });
+//       } else {
+//         console.log('logged out');
+//         this.$store.commit(`auth/${STOP_LOADING}`);
+//         this.$router.replace('/login');
+//       }
+//     });
+//   },
+// };
 </script>
 
 
@@ -108,6 +111,15 @@ export default {
 
 * {
   font-family: 'Montserrat', sans-serif;
+}
+.jr-loading {
+  z-index: 10000;
+  width: 300px;
+  font-size: 4em;
+  font-weight: bold;
+  position: absolute;
+  left: calc(50% - 150px);
+  top: 10vh;
 }
 body {
   margin: 0;

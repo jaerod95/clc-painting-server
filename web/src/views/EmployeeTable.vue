@@ -19,6 +19,7 @@
       <template slot="headers" slot-scope="props">
         <tr>
           <th>
+            Present?
             <v-checkbox
               :input-value="props.all"
               :indeterminate="props.indeterminate"
@@ -74,6 +75,7 @@
 
 <script>
 import router from '../router';
+import { mapState } from 'vuex';
 
 export default {
   data: () => ({
@@ -85,76 +87,16 @@ export default {
     columns: [
       {
         text: 'Name',
-        align: 'left',
+        align: 'right',
         value: 'name',
       },
-      { text: 'Skill', value: 'skill' },
-      { text: 'Actions', value: 'actions' },
-    ],
-    employees: [
-      {
-        value: false,
-        name: 'David',
-        skill: 'Interior',
-        dialog: false,
-      },
-      {
-        value: false,
-        name: 'Jason',
-        skill: 'Interior',
-        dialog: false,
-      },
-      {
-        value: false,
-        name: 'Seth',
-        skill: 'Interior',
-        dialog: false,
-      },
-      {
-        value: false,
-        name: 'Britton',
-        skill: 'Interior',
-        dialog: false,
-      },
-      {
-        value: false,
-        name: 'Stephanie',
-        skill: 'Interior',
-        dialog: false,
-      },
-      {
-        value: false,
-        name: 'Pauline',
-        skill: 'Interior',
-        dialog: false,
-      },
-      {
-        value: false,
-        name: 'Bob',
-        skill: 'Interior',
-        dialog: false,
-      },
-      {
-        value: false,
-        name: 'Tom',
-        skill: 'Interior',
-        dialog: false,
-      },
-      {
-        value: false,
-        name: 'Britney',
-        skill: 'Interior',
-        dialog: false,
-      },
-      {
-        value: false,
-        name: 'Mary',
-        skill: 'Interior',
-        dialog: false,
-      },
+      { text: 'Skill', align: 'center', value: 'skill' },
+      { text: 'Actions', align: 'center', value: 'actions' },
     ],
   }),
-
+  computed: mapState({
+    employees: state => state.employees.employees,
+  }),
   methods: {
     toggleAll() {
       if (this.selected.length) this.selected = [];

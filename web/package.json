@@ -7,7 +7,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint --fix",
-    "dev": "yarn run lint && yarn run serve",
+    "dev": "yarn run serve",
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {

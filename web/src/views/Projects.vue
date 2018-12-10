@@ -1,6 +1,6 @@
 <template>
   <v-layout row wrap>
-    <v-flex xs12 sm6 md4 lg3 pa-4 v-for="project in projects" :key="project.id">
+    <v-flex s12 sm6 md4 lg3 pa-4 v-for="project in projects.projects" :key="project.id">
       <v-card class="card" ripple hover @click.native="project.dialog = !project.dialog" :to="`/app/projects/${project.id}`">
         <v-card class="project-color" :color="project.color || colors[project.id % colors.length]" flat>
         </v-card>
@@ -10,70 +10,67 @@
         <v-card-text class="desc text-truncate">
         <span>{{project.description}}</span>
         </v-card-text>
-        <v-dialog v-model="project.dialog">
-          <v-card class="dialog-card">
-            <router-view />
+        <v-dialog class="dialog-wrapper" v-model="project.dialog">
+          <v-card sm8 class="dialog-card">
+            <router-view  sm8/>
           </v-card>
         </v-dialog>
       </v-card>
     </v-flex>
+      <v-btn
+      class="myButton"
+      @click.native="dialog = !dialog" :to="`/app/projects/NULL`"
+        dark
+        fab
+        right
+        color="pink"
+        >
+        <v-icon>add</v-icon>
+      </v-btn>
+      <v-dialog class="dialog-wrapper" v-model="dialog">
+          <v-card sm8 class="dialog-card">
+            <router-view sm8/>
+          </v-card>
+        </v-dialog>
   </v-layout>
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   data() {
     return {
+      dialog: false,
       colors: ['#008744', '#0057e7', '#d62d20', '#ffa700'],
-      projects: [
-        {
-          id: 1,
-          title: 'Cool Project 1',
-          address: '1234 Cool Lane',
-          description:
-            'Just your typical paint job. You got some walls, some ceilings, and some outside stuff. Should take about 5 people',
-          isFinished: false,
-          priority: 55,
-          dialog: false,
-        },
-        {
-          id: 2,
-          title: 'Cool Project 2',
-          address: '1234 Iknowwhereyoulive lane',
-          description:
-            'Just your typical paint job. You got some walls, some ceilings, and some outside stuff. Should take about 5 people',
-          isFinished: false,
-          priority: 55,
-          dialog: false,
-        },
-        {
-          id: 3,
-          title: 'Cool Project 3',
-          address: '2nd best Cool Lane 3000',
-          description:
-            'Just your typical paint job. You got some walls, some ceilings, and some outside stuff. Should take about 5 people',
-          isFinished: false,
-          priority: 55,
-          dialog: false,
-        },
-        {
-          id: 4,
-          title: 'Cool Project 4',
-          address: '4 ways to go, UT Cool Lane',
-          description:
-            'Just your typical paint job. You got some walls, some ceilings, and some outside stuff. Should take about 5 people',
-          isFinished: false,
-          priority: 55,
-          dialog: false,
-        },
-      ],
     };
+  },
+  computed: mapState({
+    projects: state => state.projects,
+  }),
+  methods: {
+    openCRUD() {
+      this.dialog = true;
+    },
+    jrclose(dia) {
+      console.log('jrclose');
+      console.log(dia);
+      dia = false;
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.myButton {
+  position: absolute;
+  bottom: 10vh !important;
+  right: 5vw;
+}
 .card {
+  &:hover {
+    cursor: pointer;
+  }
   height: 250px;
   .dialog-card {
     background-color: white;

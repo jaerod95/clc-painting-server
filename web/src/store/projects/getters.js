@@ -1,3 +1,3 @@
-export default {
-  projects: state => state.projects,
-};
+// export default {
+//   projects: state => state.projects,
+// };

@@ -48,24 +48,24 @@ export const routes = [
         component: () =>
           import(/* webpackChunkName: "employees" */ '@/views/Employees.vue'),
       },
-      {
-        path: '/app/employees/table',
-        name: 'EmployeeTable',
-        component: () =>
-          import(/* webpackChunkName: "employees" */ '@/views/EmployeeTable.vue'),
-      },
+      // {
+      //   path: '/app/employees/table',
+      //   name: 'EmployeeTable',
+      //   component: () =>
+      //     import(/* webpackChunkName: "employees" */ '@/views/EmployeeTable.vue'),
+      // },
       {
         path: '/app/create/employee',
         name: 'EmployeeCRUD',
         component: () =>
           import(/* webpackChunkName: "employeeCRUD" */ '@/views/EmployeeCRUD.vue'),
       },
-      {
-        path: '/app/create/project',
-        name: 'ProjectCRUD',
-        component: () =>
-          import(/* webpackChunkName: "projectCRUD" */ '@/views/ProjectCRUD.vue'),
-      },
+      // {
+      //   path: '/app/create/project',
+      //   name: 'ProjectCRUD',
+      //   component: () =>
+      //     import(/* webpackChunkName: "projectCRUD" */ '@/views/ProjectCRUD.vue'),
+      // },
     ],
   },
 ];

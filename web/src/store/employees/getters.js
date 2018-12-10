@@ -1,3 +1,3 @@
-export default {
-  employees: state => state.employees,
-};
+// export default {
+//   employees: state => state.employees,
+// };
