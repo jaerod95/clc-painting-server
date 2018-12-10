@@ -4,10 +4,11 @@
       <v-card class="card" ripple hover @click.native="project.dialog = !project.dialog" :to="`/app/projects/${project.id}`">
         <v-card class="project-color" :color="project.color || colors[project.id % colors.length]" flat>
         </v-card>
-        <v-card-title primary-title>
+        <v-card-title primary-title class="py-2 headline">
           {{project.title}}
         </v-card-title>
-        <v-card-text class="desc text-truncate">
+        <v-card-text class="py-0">{{project.address}}</v-card-text>
+        <v-card-text class="py-1 desc" wrap>
         <span>{{project.description}}</span>
         </v-card-text>
         <v-dialog class="dialog-wrapper" v-model="project.dialog">
